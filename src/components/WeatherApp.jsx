@@ -29,7 +29,7 @@ export default function WeatherApp() {
     return (
         <>
             <div className='w-[1320px] mx-auto'>
-                <div className='my-10 text-blue-600 text-[45px] font-bold text-center drop-shadow-2xl py-3' >Weather check App</div>
+                <div className='my-10 text-blue-600 text-[45px] font-bold text-center drop-shadow-2xl py-3' >Check Weather  App</div>
 
                 <form onSubmit={submitForm}>
                     <input
@@ -56,21 +56,27 @@ export default function WeatherApp() {
                     {result.length > 0 && result.map((weather, index) => (
                         <div key={index} className='border-2 border-sky-500  p-4 shadow-2xl bg-white drop-shadow-2xl'>
                             <div className='text-center bg-white'>
+                            <div className='text-[30px] font-bold bg-white'>
+                                    <mark className='bg-yellow-500'>{weather.sys.country}</mark>
+                                </div>
                                 <div className='text-[30px] font-bold bg-white'>
                                     {weather.name}
                                 </div>
-                                <div className='text-[30px] font-bold bg-white'>
-                                    <mark className='bg-yellow-500'>{weather.sys.country}</mark>
-                                </div>
+                                
                                 <div className='py-4 font-semibold text-[25px] bg-white'>
-                                    {weather.main.temp_max}°C
+                                        {weather.main.temp_max}°C
+                                    </div>
+
+                                <div className='flex justify-around bg-white p-5'>
+                                    <div className='font-semibold text-[25px] bg-white'>
+                                        <img className='bg-white' src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="" />
+                                    </div>
+                                    
+                                    <div className='font-semibold text-[25px] bg-white'>
+                                        {weather.weather[0].description}
+                                    </div>
                                 </div>
-                                <div className='font-semibold text-[25px] bg-white'>
-                                    <img className='bg-white' src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="" />
-                                </div>
-                                <div className='font-semibold text-[25px] bg-white'>
-                                    {weather.weather[0].description}
-                                </div>
+
                             </div>
                         </div>
                     ))}
